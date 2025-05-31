@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notoria</title>
+    <script type="module" crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script type="module" crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-white to-gray-100 p-6 md:p-12 font-sans">
+    <div id="root"></div>
+    <script type="module">
+      const e = React.createElement;
+
+      function App() {
+        function handleNoteSubmit(ev) {
+          ev.preventDefault();
+          alert("Нотатку збережено!");
+        }
+
+        function handleTryClick() {
+          alert("Дякуємо! Спробуй безкоштовно активовано.");
+        }
+
+        function handleLoginClick() {
+          alert("Функція входу поки що у розробці.");
+        }
+
+        return e(
+          "main",
+          null,
+          e("div", { className: "max-w-6xl mx-auto" },
+            e("header", { className: "flex items-center justify-between py-6" },
+              e("h1", { className: "text-3xl md:text-5xl font-bold text-gray-900" }, "Notoria"),
+              e("button", { 
+                className: "rounded-2xl px-6 py-2 text-base shadow-md bg-black text-white",
+                onClick: handleLoginClick
+              }, "Увійти")
+            ),
+            e("section", { className: "text-center py-20" },
+              e("h2", { className: "text-4xl md:text-6xl font-semibold text-gray-800 mb-6" }, "Твої думки, збережені елегантно"),
+              e("p", { className: "text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10" },
+                "Організуй свій розум за допомогою нотаток з підтримкою ШІ, що синхронізуються на всіх пристроях."
+              ),
+              e("button", {
+                className: "text-lg px-8 py-4 rounded-2xl bg-black text-white hover:bg-gray-900 shadow-lg",
+                onClick: handleTryClick
+              }, "Спробуй безкоштовно")
+            ),
+            e("section", { className: "grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-16" },
+              Array.from({ length: 3 }, (_, i) =>
+                e("div", { key: i, className: "rounded-2xl shadow-xl border border-gray-200 p-6" },
+                  e("h3", { className: "text-xl font-semibold text-gray-800 mb-2" }, "Розумні нотатки з ШІ"),
+                  e("p", { className: "text-gray-600" },
+                    "Автозведення, розумні теги і контекстний пошук допоможуть знайти будь-що миттєво."
+                  )
+                )
+              )
+            ),
+            e("section", { className: "bg-white shadow-xl rounded-3xl p-10 max-w-4xl mx-auto mt-20" },
+              e("h3", { className: "text-2xl font-semibold text-gray-900 mb-4" }, "Швидка нотатка"),
+              e("form", { className: "flex items-center gap-4", onSubmit: handleNoteSubmit },
+                e("input", {
+                  placeholder: "Напиши щось...",
+                  className: "flex-grow rounded-xl border border-gray-300 px-4 py-2",
+                  required: true
+                }),
+                e("button", { className: "text-gray-700 hover:text-black", type: "submit" }, "+")
+              )
+            )
+          )
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(e(App));
+    </script>
+  </body>
+</html>
